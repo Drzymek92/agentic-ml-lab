@@ -1,0 +1,30 @@
+# Manifest for the INDEX tables. One pipe-delimited line per entry.
+# `decision_tools.py sync` renders these into the INDEX marker blocks and warns on orphans.
+# Section header form:  # <name> :: <col> | <col> ...  (name is one word). Rows: cell | cell | ...
+
+# rationale :: # | Doc | Covers
+# (add rationale notes here as you write them, e.g.:)
+# 01 | [example](01_example.md) | what this note explains
+
+# spec :: # | Doc | Covers
+00 | [overview](build/SPEC_00_overview.md) | golden rules, repo layout, contracts-first pattern
+01 | [working-loop tooling](build/SPEC_01_working_loop.md) | scope · stats · propagate · tune contracts + metrics schema
+
+# governance :: Doc | Covers
+[DECISIONS.md](DECISIONS.md) | **canonical decision register** (D#) + propagation map + GLANCE labels
+[ROUTINE_add_decision.md](ROUTINE_add_decision.md) | the optimized add/change-a-decision workflow
+[ROUTINE_design_build_test.md](ROUTINE_design_build_test.md) | the design→build→test inner loop (scope → propagate → check/coverage → stats)
+[ROUTINE_coherence_audit.md](ROUTINE_coherence_audit.md) | the periodic high-effort realignment audit (whole-tree coherence + goal-alignment + drift)
+[ROUTINE_retrofit_governance.md](ROUTINE_retrofit_governance.md) | the optimized add-governance-to-an-existing-project subroutine (overlay → seed register → gate)
+[OPEN_DESIGN.md](OPEN_DESIGN.md) | **living** — priorities (P#) + architectural gaps (G#)
+[REFERENCES.md](REFERENCES.md) | research grounding for the model (D8) — literature → decisions/principles
+[PRINCIPLES](../PRINCIPLES.md) | the rules this template enforces (D1, D2, determinism, ...)
+[METHODOLOGY](../METHODOLOGY.md) | lifecycle stages + anti-rework practices
+`scripts/decision_tools.py` | governance + working loop: `new`·`sync`·`check`·`coverage`·`list`/`next` + `scope`·`stats`·`propagate`·`tune`·`audit`
+`design/docs_manifest.txt` | source for the INDEX doc/code tables (rendered by `sync`)
+
+# code :: File | State | Role
+`scripts/decision_tools.py` | ✅ built | governance + working-loop engine — new·sync·check·coverage·list/next·scope·stats·propagate·tune·audit
+`tests/test_decision_tools.py` | ✅ built | portable pytest suite (copies the project to tmp, drives the CLI) — `$PY -m pytest tests/`
+# (add project code modules here as you build them, e.g.:)
+# `example.py` | ◻ to build | what it does

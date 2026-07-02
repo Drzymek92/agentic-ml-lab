@@ -1,0 +1,8 @@
+# agentic_ml_lab — dev/test dependencies
+-r requirements.txt
+
+pytest==8.3.2
+pytest-cov==5.0.0
+black==24.8.0
+ruff==0.6.2          # not installed on the current authoring machine; installs fine on the new PC
+ipykernel==6.29.5    # register the venv as a Jupyter kernel

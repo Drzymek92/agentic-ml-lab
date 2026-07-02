@@ -1,0 +1,19 @@
+# Per-competition experiment config. Loaded by pipeline code so runs are reproducible & seeded.
+slug: "<slug>"
+task: "classification"        # classification | regression | ranking
+metric: "auc"                 # leaderboard metric to optimize
+
+seed: 42                      # global seed — feeds numpy / sklearn / torch / boosters (scripts/seed.py)
+
+cv:
+  scheme: "stratified_kfold"  # stratified_kfold | kfold | group_kfold | time_split
+  n_splits: 5
+  shuffle: true
+
+target: "<target_column>"
+id_col: "<id_column>"
+
+paths:
+  data: "data"
+  submissions: "submissions"
+  models: "models"

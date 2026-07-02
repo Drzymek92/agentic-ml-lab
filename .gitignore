@@ -1,0 +1,33 @@
+# environment
+.venv/
+.env
+
+# data — never commit raw inputs or generated outputs
+scripts/inputs/
+scripts/outputs/
+logs/
+
+# Kaggle competition artifacts — large data, trained models, generated submissions
+competitions/*/data/
+competitions/*/models/
+competitions/*/submissions/
+# keep the template's folder placeholders tracked
+!competitions/_TEMPLATE/**/.gitkeep
+
+# notebook checkpoints
+.ipynb_checkpoints/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# credentials
+*.json
+*.p12
+
+# token usage tracking — data + scratch tag file
+token_usage.csv
+.claude/current_task.txt

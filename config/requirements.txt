@@ -1,0 +1,45 @@
+# agentic_ml_lab — core runtime dependencies (pinned for reproducible reconstruction)
+# Refresh/validate these on the new PC at first bootstrap (see ../SETUP.md). CPU-only torch is
+# pinned here; install the CUDA build separately to match the new machine's GPU (SETUP.md §GPU).
+#
+# TARGET MACHINE (2026-07): Ubuntu 24.04 · Ryzen 7 9700X · RTX 5060 Ti 16GB (Blackwell, sm_120) ·
+# NVIDIA driver 595. Blackwell needs CUDA 12.8 (cu128) + torch >= 2.7 — see SETUP.md §GPU.
+
+# --- data / numerics ---
+pandas==2.2.3
+numpy==1.26.4          # kept <2 for broad ML-lib compatibility; bump once stack is verified on new PC
+scipy==1.13.1
+pyarrow==16.1.0        # fast parquet/feather I/O
+
+# --- classic ML ---
+scikit-learn==1.5.1
+
+# --- gradient boosting (Kaggle staples) ---
+xgboost==2.1.1
+lightgbm==4.5.0
+catboost==1.2.5
+
+# --- hyperparameter search / experiment ---
+optuna==3.6.1
+
+# --- deep learning (CPU wheel baseline; swap for the cu128 CUDA build on the new PC) ---
+# 2.7.x is the first stable series with Blackwell (sm_120) support. This CPU pin installs anywhere;
+# on the RTX 5060 Ti replace it with the cu128 build (SETUP.md §GPU), then re-pin the resolved version.
+torch==2.7.1
+
+# --- visualization / EDA ---
+matplotlib==3.9.1
+seaborn==0.13.2
+
+# --- notebooks ---
+jupyterlab==4.2.4
+
+# --- Kaggle data + submissions ---
+kaggle==1.6.17
+
+# --- agentic LLM loops (FuelIX gateway, OpenAI-compatible) ---
+langchain-openai==0.1.20
+
+# --- config / env ---
+python-dotenv==1.0.1
+pyyaml==6.0.1
