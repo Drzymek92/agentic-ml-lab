@@ -1,0 +1,31 @@
+# Per-competition experiment config. Loaded by pipeline/harness code so runs are reproducible & seeded.
+# NOTE: this is an adversarial red-team competition, not tabular ML — no CV folds / target column.
+slug: "ai-agent-security-multi-step-tool-attacks"
+task: "red_team_attack"        # write an AttackAlgorithm that trips security predicates
+metric: "predicate_replay_score"  # candidates replayed vs public+private guardrails (custom metric)
+
+seed: 123                      # FIXED competition seed — must match eval (scripts/seed.py)
+
+# Target models: attack is evaluated against each sequentially, own 9000s budget.
+targets:
+  - key: "gpt_oss"
+    arch: "GPT-OSS 20B"
+    backend: "gguf-llama.cpp-t4"
+  - key: "gemma"
+    arch: "Gemma 4 26B-A4B-it"
+    backend: "gguf-llama.cpp-t4"
+
+# Competition-enforced caps (see README → Key constraints).
+budget:
+  seconds_per_model: 9000
+  max_candidates: 2000
+  max_message_chars: 10000
+
+sdk:
+  wheel: "aicomp_sdk"          # installed from data/ after `kaggle competitions download`
+  eval_framework: "kaggle_evaluation/jed_attack_134815"
+
+paths:
+  data: "data"                 # SDK wheel + fixtures (gitignored)
+  submissions: "submissions"   # attack notebook / candidate exports
+  models: "models"             # local llama.cpp GGUF weights for replay (gitignored)
